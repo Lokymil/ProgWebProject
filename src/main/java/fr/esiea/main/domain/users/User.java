@@ -71,7 +71,12 @@ public class User {
 	}
 
 	public void setLevel(String level) {
-		this.level = UserLevel.valueOf(level.toUpperCase());
+		try{
+			this.level = UserLevel.valueOf(level.toUpperCase());
+		} catch (Exception e){
+			System.err.println("Can't find a reliable user level to  : " + level);
+			this.level = UserLevel.valueOf("BASIC");
+		}
 	}
 
 	@Override
