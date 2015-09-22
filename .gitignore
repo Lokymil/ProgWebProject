@@ -1,0 +1,6 @@
+#Set file pattern to exclude
+.classpath
+.project
+
+#Set directory pattern to exclude
+build/
