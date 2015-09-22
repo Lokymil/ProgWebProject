@@ -1,0 +1,1 @@
+insert into users values("last","first","user","email@email.com","ADMIN")
