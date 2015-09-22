@@ -29,6 +29,8 @@ public class TestController {
 		logger.debug("user created : " + user);
 		try {
 			userDao.insertUser(user);
+			User result = userDao.getUserByUserName("user");
+			logger.debug("result : " + result);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
