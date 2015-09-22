@@ -1,1 +1,1 @@
-insert into users values("last","first","user","email@email.com","ADMIN")
+insert into users values(:lastName,:firstName,:userName,:email,:level)

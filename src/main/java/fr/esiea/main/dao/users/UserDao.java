@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import fr.esiea.main.domain.users.User;
+import fr.esiea.main.utils.SqlScriptUtils;
+
 @Component
 public class UserDao {
 
@@ -16,6 +19,14 @@ public class UserDao {
 	@Qualifier(value="NPJdbcTemplate")
 	private NamedParameterJdbcTemplate jdbcTemplate;
 	
-	
+	public void insertUser(User user) throws Exception{
+		try {
+			String script = SqlScriptUtils.getScript("sqlTemplates/users/insertUser.sql", getClass());
+			logger.debug("script : " + script);
+		} catch (Exception e) {
+			logger.error("Can't retrieve sql script" );
+			e.printStackTrace();
+		}
+	}
 	
 }
