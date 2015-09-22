@@ -1,16 +1,25 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.6.RELEASE")
+    }
+}
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
-apply plugin: 'application'
-
-repositories {
-    mavenCentral()
-}
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
 
 jar {
     baseName = 'ProgWebProject'
     version =  '0.1'
 }
 
+repositories {
+    mavenCentral()
+}
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
