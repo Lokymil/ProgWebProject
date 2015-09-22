@@ -20,10 +20,14 @@ Dans le cas d'un premier commit, il faut télécharger l'interface git à l'url 
   https://git-scm.com/downloads
   
 En utilisant "Git CMD" et se placer dans le dossier de projet.
+
 Ensuite, exclure les fichiers ".classpath" et ".project" en utilisant la commande :
-  "git rm --cached <fichier>"
+ - "git rm --cached <fichier>"
+
 L'exclusion est normalement nécéssaire qu'au premier commit pour une machine donnée.
+
 Puis créer le commit commenter avec la commande :
-  "git commit -m 'coment'"
+  - "git commit -m 'coment'"
+
 Enfin, il faut push les changements avec la commande :
-  "git push origin master"
+ - "git push origin master"
