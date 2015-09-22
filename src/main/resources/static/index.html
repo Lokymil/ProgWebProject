@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Accueil</title>
+	<meta charset="UTF-8"></meta>
+	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(
+			function(){
+				console.log("ready");
+				
+				var myData = {name:"testName"}
+				
+				$.ajax({
+					url: "http://localhost:8080/new_article",
+					method: "POST",
+					data: myData,
+					dataType: "json",
+					success: function(data){
+						console.log(data);
+					}
+				});
+			});
+	</script>
+<head>
+
+<body>
+</body>
+</html>

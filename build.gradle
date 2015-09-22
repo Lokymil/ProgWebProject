@@ -1,0 +1,26 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+
+repositories {
+    mavenCentral()
+}
+
+jar {
+    baseName = 'ProgWebProject'
+    version =  '0.1'
+}
+
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-web:1.2.6.RELEASE'
+    compile 'com.h2database:h2:1.4.189'
+    compile 'com.fasterxml.uuid:java-uuid-generator:3.1.4'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
