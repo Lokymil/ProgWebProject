@@ -1,1 +1,1 @@
-insert into users values(:lastName,:firstName,:userName,:email,:level)
+insert into users (lastName, firstName, userName, email, level) values(:lastName,:firstName,:userName,:email,:level)
