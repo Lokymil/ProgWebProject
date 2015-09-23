@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 
 public class SqlScriptUtils {
 	
-	public static String getScript(String fileName, Class clazz) throws Exception{
+	public static String getScript(String fileName, Class<?> clazz) throws Exception{
 		String script = null;
 		
 		ClassLoader classLoader = clazz.getClassLoader();

@@ -19,13 +19,13 @@ public class TestController {
 	
 	@RequestMapping("/test")
 	public User test(){
-		User user = new User(42,"11yolo","22l","33'","44asti","ADMIN");
+		User user = new User("11yolo","22l","33'","44asti","ADMIN");
 		return user;
 	}
 	
 	@RequestMapping("/testDB")
 	public void testDB(){
-		User user = new User(0,"last","first","user","email","admin");
+		User user = new User("last","first","user","email","admin");
 		logger.debug("user created : " + user);
 		try {
 			userDao.insertUser(user);

@@ -14,7 +14,7 @@ apply plugin: 'spring-boot'
 
 jar {
     baseName = 'ProgWebProject'
-    version =  '0.1'
+    version =  '0.2'
 }
 
 repositories {

@@ -11,9 +11,9 @@ public class User {
 
 	public User(){}
 	
-	public User(long id, String lastName, String firstName, String userName,
+	public User(String lastName, String firstName, String userName,
 			String email, String level) {
-		this.id = id;
+		this.id = 0;
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.userName = userName;

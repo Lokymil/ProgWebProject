@@ -16,7 +16,7 @@ public class ArticlesController {
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/new_article")
 	public User newArticle(@RequestParam(value="name", required=false) String name){
-		User user = new User(42,name,"firstName","userName","email","ADMIN");
+		User user = new User(name,"firstName","userName","email","ADMIN");
 		logger.debug("Received value name : " + name);
 		return user;
 	}
