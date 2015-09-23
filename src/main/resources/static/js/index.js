@@ -21,7 +21,7 @@ $(document).ready(
 		
 		var subscribe = function() {
 				$.ajax({
-					url: "http://localhost:8080/subscribe",
+					url: "http://localhost:8090/subscribe",
 					method: "GET",
 					success: function(data){
 						console.log(data);
@@ -36,7 +36,7 @@ $(document).ready(
 		}
 		
 		/*$.ajax({
-			url: "http://localhost:8080/new_article",
+			url: "http://localhost:8090/new_article",
 			method: "POST",
 			data: myData,
 			dataType: "json",

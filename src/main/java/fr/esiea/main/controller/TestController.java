@@ -1,5 +1,8 @@
 package fr.esiea.main.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import fr.esiea.main.dao.users.UserDao;
 import fr.esiea.main.domain.users.User;
 
 @RestController
+@RequestMapping("/testing")
 public class TestController {
 	
 	Logger logger = LoggerFactory.getLogger(getClass());

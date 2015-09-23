@@ -1,3 +1,15 @@
+var toto = {};
+
+toto.mafonction = function() {
+	
+	console.log(this.valeur);
+};
+
+toto.valeur = 5;
+
+toto.mafonction();
+
+
 $(document).ready(
 
 	function(){
@@ -7,19 +19,24 @@ $(document).ready(
 		var menu = $("#menu");
 		var content = $("#content");
 		
-		menu.children("#toSubscribe").click(function() {
-			$.ajax({
-				url: "http://localhost:8080/subscribe",
-				method: "GET",
-				success: function(data){
-					console.log(data);
-					content.html(data);
-				}
-			});
-		});
+		var subscribe = function() {
+				$.ajax({
+					url: "http://localhost:8090/subscribe",
+					method: "GET",
+					success: function(data){
+						console.log(data);
+						content.html(data);
+					}
+				});
+			};
+		menu.children("#toSubscribe").click(subscribe);
+		
+		if(window.location.anchor == "subscribe") {
+			subscribe();
+		}
 		
 		/*$.ajax({
-			url: "http://localhost:8080/new_article",
+			url: "http://localhost:8090/new_article",
 			method: "POST",
 			data: myData,
 			dataType: "json",
