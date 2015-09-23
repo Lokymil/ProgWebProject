@@ -12,7 +12,7 @@ ________________ Récupération du projet ________________
 Pour pouvoir exploiter le projet, il faut d'abord cloner le repository.
 Pour cloner le repository :
   - soit le télécharger au format zip
-  - soit utiliser "Git CMD" de GUI et utiliser la commande "git pull <repo url>" à partir du dossier de destination
+  - soit utiliser "Git CMD" de GUI et utiliser la commande "git clone  [repo url]" à partir du dossier de destination
 Pour obtenir GUI, se référer à la section "Participation au projet"
   
 Une fois le répository cloner, avec un interpréteur de commande :
@@ -28,7 +28,7 @@ Dans le cas d'un premier commit, il faut télécharger l'interface git à l'url 
 En utilisant "Git CMD" se placer dans le dossier de projet.
 
 Avant toutes modification sur le repository, il est nécessaire d'être à jour. Pour cela, il faut utiliser la commande :
- - git pull <git url>
+ - git pull [git url]
 
 Ensuite, il faut ajouter les fichiers modifiés au commit en utilisant la commande :
   - git add .
