@@ -12,7 +12,8 @@ ________________ Récupération du projet ________________
 Pour pouvoir exploiter le projet, il faut d'abord cloner le repository.
 Pour cloner le repository :
   - soit le télécharger au format zip
-  - soit utiliser "Git CMD" de GUI et utiliser la commande "git clone  [repo url]" à partir du dossier de destination
+  - soit utiliser "Git CMD" de GUI et utiliser la commande "git clone  [repo url]" à partir du dossier de destination.
+
 Pour obtenir GUI, se référer à la section "Participation au projet"
   
 Une fois le répository cloner, avec un interpréteur de commande :
