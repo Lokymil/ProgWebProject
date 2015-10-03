@@ -1,5 +1,6 @@
 package fr.esiea.main.controller.users;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,12 @@ public class UsersController {
 		res.setContentType("text/html");
 		res.setCharacterEncoding("UTF-8");
 		return "<p>wololololo</p>";
+	}
+	
+	
+	@RequestMapping(value="/subscribe", method=RequestMethod.POST)
+	public @ResponseBody String getAuthorization(HttpServletRequest req, HttpServletResponse res) {
+		return null;
 	}
 	
 }
