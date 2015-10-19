@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Coment {
 
-	private long creatorId;
+	private long authorId;
 	private long articleId;
 	private long id;
 	private String content;
@@ -12,10 +12,10 @@ public class Coment {
 	
 	public Coment(){}
 
-	public Coment(long creatorId, long articleId, long id, String content,
+	public Coment(long authorId, long articleId, long id, String content,
 			Date creationDate) {
 		super();
-		this.creatorId = creatorId;
+		this.authorId = authorId;
 		this.articleId = articleId;
 		this.id = id;
 		this.content = content;
@@ -23,11 +23,11 @@ public class Coment {
 	}
 
 	public long getCreatorId() {
-		return creatorId;
+		return authorId;
 	}
 
 	public void setCreatorId(long creatorId) {
-		this.creatorId = creatorId;
+		this.authorId = creatorId;
 	}
 
 	public long getArticleId() {
@@ -64,7 +64,7 @@ public class Coment {
 
 	@Override
 	public String toString() {
-		return "Coment [creatorId=" + creatorId + ", articleId=" + articleId
+		return "Coment [creatorId=" + authorId + ", articleId=" + articleId
 				+ ", id=" + id + ", content=" + content + ", creationDate="
 				+ creationDate + "]";
 	}

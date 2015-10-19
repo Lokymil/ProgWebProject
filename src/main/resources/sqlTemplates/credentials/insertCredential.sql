@@ -1,0 +1,1 @@
+insert into credentials (userId, login, password, authorisation, lastUse) values (:userId, :login, :password, :authorisation, :lastUse);

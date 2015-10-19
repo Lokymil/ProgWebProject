@@ -9,18 +9,27 @@ create table users (
 
 create table articles (
 	id long NOT NULL AUTO_INCREMENT,
-	creatorId long NOT NULL,
+	authorId long NOT NULL,
 	title varchar(256) NOT NULL,
 	content varchar(5000) NOT NULL,
 	creationDate date NOT NULL,
 	lastModified date,
-	note long
+	mark long
 );
 
 create table coments (
 	id long NOT NULL AUTO_INCREMENT,
-	creatorId long NOT NULL,
+	authorId long NOT NULL,
 	articleId long NOT NULL,
 	content varchar(5000),
 	creationDate date NOT NULL
+);
+
+create table credentials (
+	id long NOT NULL AUTO_INCREMENT,
+	userId long NOT NULL,
+	login varchar(256) NOT NULL,
+	password varchar(256),
+	authorisation long,
+	lastUse date
 );

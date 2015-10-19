@@ -4,34 +4,34 @@ import java.util.Date;
 
 public class Article {
 
-	private long creatorId;
+	private long authorId;
 	private long id;
 	private String title;
 	private String content;
 	private Date creationDate;
 	private Date lastModified;
-	private long note;
+	private long mark;
 	
 	public Article() {}
 	
 	public Article(long idCreator, long id, String title, String content,
 			Date dateCreation, Date lastModified, long note) {
 		super();
-		this.creatorId = idCreator;
+		this.authorId = idCreator;
 		this.id = id;
 		this.title = title;
 		this.content = content;
 		this.creationDate = dateCreation;
 		this.lastModified = lastModified;
-		this.note = note;
+		this.mark = note;
 	}
 
-	public long getIdCreator() {
-		return creatorId;
+	public long getAuthorId() {
+		return authorId;
 	}
 
-	public void setIdCreator(long idCreator) {
-		this.creatorId = idCreator;
+	public void setAuthorId(long idCreator) {
+		this.authorId = idCreator;
 	}
 
 	public long getId() {
@@ -74,17 +74,17 @@ public class Article {
 		this.lastModified = lastModified;
 	}
 
-	public long getNote() {
-		return note;
+	public long getMark() {
+		return mark;
 	}
 
-	public void setNote(long note) {
-		this.note = note;
+	public void setMark(long note) {
+		this.mark = note;
 	}
 
 	@Override
 	public String toString() {
-		return "Article [idCreator=" + creatorId + ", id=" + id + ", title="
+		return "Article [idCreator=" + authorId + ", id=" + id + ", title="
 				+ title + ", content=" + content + ", dateCreation="
 				+ creationDate + ", lastModified=" + lastModified + "]";
 	}
