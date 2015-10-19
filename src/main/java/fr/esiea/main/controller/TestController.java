@@ -32,7 +32,7 @@ public class TestController {
 		User user = new User("last","first","user","email","admin");
 		logger.debug("user created : " + user);
 		try {
-			userDao.insertUser(user);
+//			userDao.insertUser(user);
 			User result = userDao.getUserByUserName("user");
 			logger.debug("result : " + result);
 		} catch (Exception e) {

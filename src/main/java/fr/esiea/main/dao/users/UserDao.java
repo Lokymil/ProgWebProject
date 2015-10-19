@@ -15,6 +15,7 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import fr.esiea.main.domain.users.ExistingUserException;
 import fr.esiea.main.domain.users.User;
 import fr.esiea.main.utils.SqlScriptUtils;
 
@@ -29,12 +30,24 @@ public class UserDao {
 	@Qualifier(value = "NPJdbcTemplate")
 	private NamedParameterJdbcTemplate jdbcTemplate;
 
-	public void insertUser(User user) throws Exception {
+	public Long createUser(User user) throws Exception {
 		Exception insertException = new Exception("Can't insert user : "
 				+ user.toString());
+		ExistingUserException euException = new ExistingUserException("This user already exist "+ user.toString());
 
 		try {
-
+			logger.debug("Insert user " + user.toString());
+			
+			User existingUser = null;
+			try{
+				existingUser = this.getUserByUserName(user.getUserName());
+			} catch (Exception e){
+				logger.debug("This user doesn't exist and can be created : " + user.toString());
+			}
+			if (existingUser != null) {
+				throw euException;
+			}
+			
 			String script = SqlScriptUtils.getScript(
 					scriptFolder + "insertUser.sql", getClass());
 			logger.debug("script : " + script);
@@ -54,7 +67,14 @@ public class UserDao {
 				throw insertException;
 			}
 
-			logger.info("User " + user.toString() + " has been inserted");
+			logger.info("User has been inserted " + user.toString());
+			
+			User createdUser = this.getUserByUserName(user.getUserName());
+			if (createdUser == null) {
+				logger.error("Can't retrieve previously created user " + user.toString());
+				throw insertException;
+			}
+			return createdUser.getId();
 
 		} catch (IOException ioe) {
 			logger.error("Can't retrieve sql script");
@@ -68,16 +88,18 @@ public class UserDao {
 		User user = null;
 
 		try {
-			
+			logger.debug("Getting user " + userName);
 			String script = SqlScriptUtils.getScript(scriptFolder + "getUserByUserName.sql", getClass());
 			
 			Map<String,Object> param = Collections.singletonMap("userName", userName);
 			List<User> result = jdbcTemplate.query(script, param, new BeanPropertyRowMapper<User>(User.class));
 			
 			if (result == null || result.size() <= 0) {
+				logger.debug("User " + userName + " doesn't exist");
 				throw getUserException;
 			}
 			
+			logger.debug("User " + userName + " exists");
 			user = result.get(0);
 			
 		} catch (IOException ioe) {

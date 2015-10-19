@@ -1,3 +1,1 @@
-select * 
-	from users 
-	where userName = :userName
+select * from users where userName = :userName
