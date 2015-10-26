@@ -1,0 +1,1 @@
+insert into coments (authorId, articleId, content, creationDate) values (:authorId, :articleId, :content, :creationDate);

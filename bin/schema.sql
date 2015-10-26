@@ -30,6 +30,6 @@ create table credentials (
 	userId long NOT NULL,
 	login varchar(256) NOT NULL,
 	password varchar(256),
-	authorisation long,
+	authorisation varchar(256),
 	lastUse date
 );

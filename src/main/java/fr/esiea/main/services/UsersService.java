@@ -38,7 +38,7 @@ public class UsersService {
 			
 			logger.info("Credential created");
 			
-			return null;
+			return authorisation;
 			
 		} catch (ExistingUserException euException) {
 			logger.error("User " + userName + " already exist and cannot be created");

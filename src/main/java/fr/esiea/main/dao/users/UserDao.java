@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
@@ -74,6 +73,7 @@ public class UserDao {
 				logger.error("Can't retrieve previously created user " + user.toString());
 				throw insertException;
 			}
+			
 			return createdUser.getId();
 
 		} catch (IOException ioe) {
