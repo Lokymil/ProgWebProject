@@ -39,5 +39,9 @@ public class CredentialsService {
 			return null;
 		}
 	}
+	
+	public boolean isAthorized(String login, String authorisation){
+		return credDao.isAuthorized(login, authorisation);
+	}
 
 }

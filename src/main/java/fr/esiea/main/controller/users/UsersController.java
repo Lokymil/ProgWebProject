@@ -23,7 +23,9 @@ public class UsersController {
 
 		String authorisation = usersService.createNewUser("test", "test", "test", "test", "test");
 
-		return authorisation;
+		String authorisation2 = usersService.login("test", "test");
+		
+		return authorisation2;
 	}
 
 	// first subscribtion for a user

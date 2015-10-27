@@ -56,9 +56,9 @@ public class CredentialDao {
 				logger.error("Number of line affected : " + numberLine + "for credential " + login);
 				throw insertException;
 			}
-			
+
 			logger.debug("credentials " + login + "has been created");
-			
+
 			return authorisation;
 
 		} catch (IOException ioe) {
@@ -67,75 +67,115 @@ public class CredentialDao {
 		}
 	}
 
-	public boolean isAuthorized(String login, String authorisation){
+	public boolean isAuthorized(String login, String authorisation) {
 		logger.debug("Seek for " + login + " authorisation");
-		
-		try{
+
+		try {
 			String script = SqlScriptUtils.getScript(scriptFolder + "isAuthorized.sql", getClass());
-			
+
 			Map<String, Object> param = new HashMap<String, Object>();
 			param.put("authorisation", authorisation);
 			param.put("login", login);
-			
-			List<Credential> result = jdbcTemplate.query(script, param, new BeanPropertyRowMapper<Credential>(Credential.class));
-			if (result.size() != 1){
+
+			List<Credential> result = jdbcTemplate.query(script, param,
+					new BeanPropertyRowMapper<Credential>(Credential.class));
+			if (result.size() != 1) {
 				logger.error("multiples lines are used for " + login);
 				return false;
 			}
-			
-			Date lastUse  = result.get(0).getLastUse();
+
+			Date lastUse = result.get(0).getLastUse();
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(lastUse);
 			cal.add(Calendar.MINUTE, 30);
 			Date lastUseAuthorized = cal.getTime();
 			logger.debug("Date retrieved from database : " + lastUse);
 			logger.debug("Date with 30 min added " + lastUseAuthorized);
-			if (lastUseAuthorized.after(new Date())){
+			if (lastUseAuthorized.after(new Date())) {
 				logger.info(login + " is authorized");
+				try {
+					this.updateAuthorisationTime(login, authorisation);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				return true;
 			}
-			
+
 			logger.info(login + " is NOT authorized");
-			
+
 			return false;
-			
-		} catch(IOException ioe){
+
+		} catch (IOException ioe) {
 			logger.error("Can't retrieve sql script");
 			return false;
 		}
-		
+
 	}
-	
+
 	private String getAuthorisation() {
 		String authorisation = UUID.randomUUID().toString();
 		logger.debug("authorisation : " + authorisation);
 		return authorisation;
 	}
 
-	public String getAuthorisationByUserName(String userName, String password) throws Exception{
+	public String getAuthorisationByUserName(String userName, String password) throws Exception {
 		Exception getAuthoException = new Exception("Can't retrieve authorisation for user " + userName);
-		
+
 		try {
 			logger.debug("Retrive authorisation for user : " + userName);
 			String script = SqlScriptUtils.getScript(scriptFolder + "getAuthorisationByUserName.sql", getClass());
 			logger.debug("Script : " + script);
-			
+
 			Map<String, Object> param = new HashMap<String, Object>();
 			param.put("login", userName);
 			param.put("password", password);
-			
-			List<Credential> result = jdbcTemplate.query(script, param, new BeanPropertyRowMapper<Credential>(Credential.class));
+
+			List<Credential> result = jdbcTemplate.query(script, param,
+					new BeanPropertyRowMapper<Credential>(Credential.class));
 			if (result.size() != 1) {
 				logger.error("The number of lines return is " + result.size());
 				throw getAuthoException;
 			}
-			
-			return result.get(0).getAuthorisation();
-			
+
+			String authorisation = result.get(0).getAuthorisation();
+
+			this.updateAuthorisationTime(userName, authorisation);
+
+			return authorisation;
+
 		} catch (IOException e) {
 			e.printStackTrace();
 			logger.error("Can't retrieve script");
 			throw getAuthoException;
 		}
+	}
+
+	private void updateAuthorisationTime(String login, String authorisation) throws Exception {
+		Exception updateException = new Exception("Can't update credentials");
+
+		try {
+			logger.info("Update authorisation time for " + login);
+			String script = SqlScriptUtils.getScript(scriptFolder + "updateAuthorisationTime.sql", getClass());
+			logger.debug("Script : " + script);
+
+			Map<String, Object> param = new HashMap<String, Object>();
+			param.put("lastUse", new Date());
+			param.put("login", login);
+			param.put("authorisation", authorisation);
+
+			int numberLinesAffected = jdbcTemplate.update(script, param);
+			if (numberLinesAffected != 1) {
+				logger.error("Number lines affected : " + numberLinesAffected);
+				throw updateException;
+			}
+
+			logger.info("Authorisation time updated");
+
+		} catch (IOException e) {
+			e.printStackTrace();
+			logger.error("Can't update credentials");
+			throw updateException;
+		}
+
 	}
 }
