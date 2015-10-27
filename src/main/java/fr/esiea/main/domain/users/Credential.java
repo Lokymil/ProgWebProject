@@ -72,6 +72,4 @@ public class Credential {
 		this.lastUse = lastUse;
 	}
 	
-	
-	
 }

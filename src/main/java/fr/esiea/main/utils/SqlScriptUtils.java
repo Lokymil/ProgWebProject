@@ -1,12 +1,13 @@
 package fr.esiea.main.utils;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class SqlScriptUtils {
 	
-	public static String getScript(String fileName, Class<?> clazz) throws Exception{
+	public static String getScript(String fileName, Class<?> clazz) throws IOException{
 		String script = null;
 		
 		ClassLoader classLoader = clazz.getClassLoader();

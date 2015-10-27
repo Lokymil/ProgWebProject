@@ -31,5 +31,5 @@ create table credentials (
 	login varchar(256) NOT NULL,
 	password varchar(256),
 	authorisation varchar(256),
-	lastUse date
+	lastUse datetime
 );
