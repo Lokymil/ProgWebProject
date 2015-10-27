@@ -1,0 +1,1 @@
+select * from credentials where login = :login and password = :password

@@ -111,4 +111,31 @@ public class CredentialDao {
 		logger.debug("authorisation : " + authorisation);
 		return authorisation;
 	}
+
+	public String getAuthorisationByUserName(String userName, String password) throws Exception{
+		Exception getAuthoException = new Exception("Can't retrieve authorisation for user " + userName);
+		
+		try {
+			logger.debug("Retrive authorisation for user : " + userName);
+			String script = SqlScriptUtils.getScript(scriptFolder + "getAuthorisationByUserName.sql", getClass());
+			logger.debug("Script : " + script);
+			
+			Map<String, Object> param = new HashMap<String, Object>();
+			param.put("login", userName);
+			param.put("password", password);
+			
+			List<Credential> result = jdbcTemplate.query(script, param, new BeanPropertyRowMapper<Credential>(Credential.class));
+			if (result.size() != 1) {
+				logger.error("The number of lines return is " + result.size());
+				throw getAuthoException;
+			}
+			
+			return result.get(0).getAuthorisation();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+			logger.error("Can't retrieve script");
+			throw getAuthoException;
+		}
+	}
 }

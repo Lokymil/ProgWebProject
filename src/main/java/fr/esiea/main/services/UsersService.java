@@ -17,7 +17,7 @@ public class UsersService {
 	private String basicUserLevel = "BASIC";
 	
 	@Autowired
-	private UserDao usersDao;
+	private UserDao userDao;
 	
 	@Autowired
 	private CredentialsService credService;
@@ -27,7 +27,7 @@ public class UsersService {
 			User user = new User(lastName, firstName, userName, email, basicUserLevel);
 			logger.info("Creating user");
 			Long id;
-			id = usersDao.createUser(user);
+			id = userDao.createUser(user);
 			user.setId(id);
 			
 
@@ -45,9 +45,24 @@ public class UsersService {
 			return "User name " + userName + " already exists";
 		}
 		catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "Can't create user due to an internal error";
+		}
+	}
+
+	public String login(String userName, String password) {
+		try {
+			User user = userDao.getUserByUserName(userName);
+			if (user == null){
+				throw new Exception("User does not exist");
+			}
+			String authorisation = credService.getCredByUser(userName, password);
+			
+			return authorisation;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
 		}
 	}
 
