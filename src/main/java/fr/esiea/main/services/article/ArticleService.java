@@ -1,6 +1,7 @@
 package fr.esiea.main.services.article;
 
 import java.util.Date;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,4 +50,15 @@ public class ArticleService {
 		return result;
 	}
 
+	public List<Article> getArticlesByPage(int pageNumber){
+		try {
+			List<Article> result = articleDao.getArticlesByPage(pageNumber);
+			return result;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 }

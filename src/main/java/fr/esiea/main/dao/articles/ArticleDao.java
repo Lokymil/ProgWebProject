@@ -1,13 +1,16 @@
 package fr.esiea.main.dao.articles;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
@@ -52,6 +55,32 @@ public class ArticleDao {
 		} catch (IOException ioe) {
 			logger.error("Can't retrieve sql script");
 			throw insertException;
+		}
+	}
+
+	// pagination will be 10 articles by page
+	public List<Article> getArticlesByPage(int pageNumber) throws Exception {
+		Exception noArticleException = new Exception("Can't retrieve article");
+		
+		try {
+			String script = SqlScriptUtils.getScript(scriptFolder + "getArticlesByPage.sql", getClass());
+			logger.debug("Script : " + script);
+			int infBound = (pageNumber-1)*10;
+			int supBound = pageNumber*10;
+			
+			List<Article> result = jdbcTemplate.query(script, new BeanPropertyRowMapper<Article>(Article.class));
+			if (result == null || result.size() <= 0) {
+				logger.error("Can't retrieve article");
+				throw noArticleException;
+			}
+			
+			List<Article> toReturn = result.subList(infBound, supBound); 
+			
+			return toReturn;
+		} catch (IOException e) {
+			e.printStackTrace();
+			logger.error("Can't retrieve script");
+			throw noArticleException;
 		}
 	}
 }

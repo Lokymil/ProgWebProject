@@ -12,8 +12,8 @@ create table articles (
 	authorId long NOT NULL,
 	title varchar(256) NOT NULL,
 	content varchar(5000) NOT NULL,
-	creationDate date NOT NULL,
-	lastModified date
+	creationDate datetime NOT NULL,
+	lastModified datetime
 );
 
 create table coments (

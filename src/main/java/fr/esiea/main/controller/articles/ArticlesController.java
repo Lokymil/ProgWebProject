@@ -1,14 +1,18 @@
 package fr.esiea.main.controller.articles;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.esiea.main.domain.articles.Article;
 import fr.esiea.main.services.article.ArticleService;
 import fr.esiea.main.services.user.CredentialsService;
 
@@ -37,6 +41,14 @@ public class ArticlesController {
 			@RequestParam(value="content", required=true) String content){
 		
 		String result = articleService.createArticle(userName, authorisation, title, content); 
+		
+		return result;
+	}
+	
+	@RequestMapping(method = RequestMethod.GET,value = "/articles/{pageNumber}")
+	public @ResponseBody List<Article> getArticlesByPage(@PathVariable(value="pageNumber") int pageNumber){
+		
+		List<Article> result = articleService.getArticlesByPage(pageNumber);
 		
 		return result;
 	}
