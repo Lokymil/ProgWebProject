@@ -1,4 +1,4 @@
-package fr.esiea.main.services;
+package fr.esiea.main.services.user;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,6 +64,11 @@ public class UsersService {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	public User getUser(String userName) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

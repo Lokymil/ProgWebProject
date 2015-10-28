@@ -38,7 +38,6 @@ public class ArticleDao {
 			param.put("content", article.getContent());
 			param.put("creationDate", article.getDateCreation());
 			param.put("lastModified", article.getLastModified());
-			param.put("mark", article.getMark());
 			
 			int numberLine = jdbcTemplate.update(script, param);
 			

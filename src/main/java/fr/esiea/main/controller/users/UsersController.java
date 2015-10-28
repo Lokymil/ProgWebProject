@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import fr.esiea.main.services.UsersService;
+import fr.esiea.main.services.user.UsersService;
 
 @Controller
 public class UsersController {
@@ -18,6 +18,7 @@ public class UsersController {
 	@Autowired
 	private UsersService usersService;
 
+	// This service web is for test
 	@RequestMapping(value = "/subscribe", method = RequestMethod.GET)
 	public @ResponseBody String subscribeTest(HttpServletRequest req, HttpServletResponse res) {
 
@@ -42,6 +43,7 @@ public class UsersController {
 		return authorisation;
 	}
 	
+	// login method for subscribed user
 	@RequestMapping(value="/login", method = RequestMethod.POST)
 	public @ResponseBody String login(HttpServletRequest req,
 			@RequestParam(value = "userName", required = true) String userName,

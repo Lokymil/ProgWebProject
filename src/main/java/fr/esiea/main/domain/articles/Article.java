@@ -10,12 +10,11 @@ public class Article {
 	private String content;
 	private Date creationDate;
 	private Date lastModified;
-	private long mark;
 	
 	public Article() {}
 	
 	public Article(long idCreator, long id, String title, String content,
-			Date dateCreation, Date lastModified, long note) {
+			Date dateCreation, Date lastModified) {
 		super();
 		this.authorId = idCreator;
 		this.id = id;
@@ -23,7 +22,6 @@ public class Article {
 		this.content = content;
 		this.creationDate = dateCreation;
 		this.lastModified = lastModified;
-		this.mark = note;
 	}
 
 	public long getAuthorId() {
@@ -72,14 +70,6 @@ public class Article {
 
 	public void setLastModified(Date lastModified) {
 		this.lastModified = lastModified;
-	}
-
-	public long getMark() {
-		return mark;
-	}
-
-	public void setMark(long note) {
-		this.mark = note;
 	}
 
 	@Override

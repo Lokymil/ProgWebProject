@@ -13,8 +13,7 @@ create table articles (
 	title varchar(256) NOT NULL,
 	content varchar(5000) NOT NULL,
 	creationDate date NOT NULL,
-	lastModified date,
-	mark long
+	lastModified date
 );
 
 create table coments (

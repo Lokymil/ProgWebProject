@@ -1,1 +1,1 @@
-insert into articles (authorId, title, content, creationDate, lastModified, mark) values (:authorId, :title, :content, :creationDate, :lastModified, :mark);
+insert into articles (authorId, title, content, creationDate, lastModified) values (:authorId, :title, :content, :creationDate, :lastModified);
