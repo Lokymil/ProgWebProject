@@ -21,7 +21,7 @@ create table coments (
 	authorId long NOT NULL,
 	articleId long NOT NULL,
 	content varchar(5000),
-	creationDate date NOT NULL
+	creationDate datetime NOT NULL
 );
 
 create table credentials (

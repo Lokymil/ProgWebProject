@@ -1,6 +1,7 @@
 package fr.esiea.main.dao.articles;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,4 +53,29 @@ public class ComentDao {
 		}
 	}
 
+	public void insertComment(Coment coment) throws Exception{
+		Exception insertException = new Exception("Can't insert coment");
+		
+		try {
+			String script = SqlScriptUtils.getScript(scriptFolder + "insertComent.sql", getClass());
+			logger.debug("Script : " + script);
+			
+			Map<String, Object> param = new HashMap<String, Object>();
+			param.put("authorId", coment.getCreatorId());
+			param.put("articleId", coment.getArticleId());
+			param.put("content", coment.getContent());
+			param.put("creationDate", new Date());
+			
+			int numberLine = jdbcTemplate.update(script, param);
+			if (numberLine != 1){
+				logger.error("The number of affected line is " + numberLine);
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+			logger.error("Can't retrieve ");
+			throw insertException;
+		}
+	}
+	
 }
