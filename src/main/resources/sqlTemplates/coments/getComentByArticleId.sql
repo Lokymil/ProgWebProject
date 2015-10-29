@@ -1,0 +1,1 @@
+select * from coments where articleId = :articleId
