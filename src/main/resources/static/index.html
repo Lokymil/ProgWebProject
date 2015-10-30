@@ -10,27 +10,21 @@
 		<header  class="header">
 			<h1>ATTRAC-PARCK<br/>Site des parcs d'attractions</h1>
 			<div id="spaceButton">
-				<input type="button" id="buttonInscription" value="Inscription" onClick="inscription('formInscription')">	
-				<input type="button" id="buttonConnexion" value="Connexion" onClick="connexion('formConnexion')">
+				<input type="button" id="buttonInscription" value="Inscription" onClick="inscription()">	
+				<input type="button" id="buttonConnexion" value="Connexion" onClick="connexion()">
+				<input type="button" id="buttonArticles" value="Articles" onClick="getArticles()">
 			</div>	
 		</header>
 			
 		<div id="content">
-			<input type="button" id="addArticle" value="Ajouter un article" onClick="addArticle('formArticle')">
-			<div id="listArtciles" style="visibility: visible">
+			<div id="listArticles" style="visibility: visible">
+				<input type="button" id="addArticle" value="Ajouter un article" onClick="addArticle()">
 				<fieldset>
 				  	<legend>Article 1</legend>
 				  
 				  	<label>De : </label>Lolipop<br/><br/>
 				    <label>Titre : </label>Petite description d'Asterix<br/><br/>
 				    Au coeur de la region parisienne, le Parc Asterix vous propose 36 attractions dont une dizaine dediees aux moins de 6 ans, qui invitent nos irreductibles visiteurs a vivre des aventures taillees sur mesure<br/><br/>
-		    	</fieldset>
-		    	<fieldset>
-				  	<legend>Article 2</legend>
-				  
-				  	<label>De : </label>Kitkat<br/><br/>
-				    <label>Titre : </label>Avis perso sur Disneyland<br/><br/>
-				    Disneyland est un parc d'attraction ou petit et grand peuvent s'amuser. Personnellement, je ne m'ennui jamais !!<br/><br/>
 		    	</fieldset>
 			</div>
 			<div id="formArticle" style="visibility: hidden">
@@ -85,40 +79,12 @@
 		
 		<footer id="footer">
 			<p>Site web realise par <a href="https://fr.linkedin.com/pub/christophe-arrestier/b1/411/316">Christophe ARRESTIER</a> et <a href="https://fr.linkedin.com/in/floriannederouet">Florianne DEROUET</a><br/>Dans le cadre d'un projet scolaire a l'<a href="http://www.esiea.fr/">ESIEA</a></p>
+			<p>Ce site est open source et la participation s'effectue par le biais de <a href="https://github.com/Lokymil/ProgWebProject">GitHub</a>.
 		</footer>
 	</div>
 	
 	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
 	<script type="text/javascript" src="js/subscribeView.js"></script>
-	<script language="javascript">
-		function inscription(el){
-			state=document.getElementById(el).style.visibility;
-			if(state=="hidden"){
-				document.getElementById(el).style.visibility="visible";
-			}
-			else{
-				document.getElementById(el).style.visibility="hidden";
-			}
-		}
-		function connexion(el){
-			state=document.getElementById(el).style.visibility;
-			if(state=="hidden"){
-				document.getElementById(el).style.visibility="visible";
-			}
-			else{
-				document.getElementById(el).style.visibility="hidden";
-			}
-		}
-		function addArticle(el){
-			state=document.getElementById(el).style.visibility;
-			if(state=="hidden"){
-				document.getElementById(el).style.visibility="visible";
-			}
-			else{
-				document.getElementById(el).style.visibility="hidden";
-			}
-		}
-	</script>
 </body>
 </html>
