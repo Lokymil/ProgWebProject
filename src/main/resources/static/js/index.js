@@ -6,6 +6,8 @@ var test = "test";
 var formLogin = {};
 var formSub = {};
 var formNewArt = {};
+var login = {};
+var authoriation = {};
 
 function inscription(){
 	state=subFragment.style.display;
@@ -19,21 +21,39 @@ function inscription(){
 }
 
 var subscribe = function(){
-	console.log("Send login");
-	$.post("/login",{userName:test,password:test}, function(data, status){
-		console.log("data : " + data + ", status " + status);
-	});
-//		$.ajax({
-//			url: "http://localhost:8090/login",
-//			type: "POST",
-//			data: {userName:test,password:test},
-//			dataType: "json",
-//			success: function(data){
-//				console.log("test " + data);
-//			}
-//		});
-		console.log("loged in")
-	};
+	console.log("Subscribe");
+	var password = formSub.children("#password").val();
+	if(password == formSub.children("#password2").val()){
+		console.log("password ok " + password);
+		$.post("/subscribe",
+			{
+				firstName:formSub.children("#firstName").val(),
+				lastName:formSub.children("#lastName").val(),
+				userName:formSub.children("#userName").val(),
+				email:formSub.children("#email").val(),
+				password:password
+			},
+			function(data){
+				console.log("data : " + data);
+				if (data != null && data != ""){
+					if (data.indexOf("exists") > -1){
+						alert("Votre pseudo existe déjà! Trouvez en un autre.");
+					} else if (data.indexOf("error") > -1){
+						alert("Nous ne pouvons vous enregistrer à cause d'un problème interne.");
+					} else {
+						console.log("Is ok " + data);
+						login = formSub.children("#userName").val();
+						authorisation = data;
+					}
+				} else {
+					alert("Nous ne pouvons vous enregistrer à cause d'un problème interne.");
+				}
+			});
+	} else {
+		alert("Votre mot de passe n'est pas identique dans les deux champs");
+	}
+	
+};
 
 function connexion(){
 	state=logFragment.style.display;
@@ -45,6 +65,22 @@ function connexion(){
 		articles.style.display="none";
 	}
 }
+
+var login = function(){
+	console.log("Send login");
+	$.post("/login",{userName:formLogin.children("#userName").val(),
+					password:formLogin.children("#password").val()}, 
+					function(data){
+							console.log("data : " + data);
+							if (data != null && data != ""){ 
+								login = formLogin.children("#userName").val();
+								authorisation = data;
+							} else {
+								alert("Votre mot de passe ou votre identifiant sont erronés");
+							}
+					});
+	console.log("loged in")
+};
 
 function addArticle(){
 	state=articleFragment.style.display;
@@ -78,7 +114,7 @@ $(document).ready(
 			articleFragment = document.getElementById("fragmentArticle");
 			articles = document.getElementById("listArticles");
 			formLogin = $("#formLogin");
-			formSub = $("#formSub");
+			formSub = $("#formSubscribe");
 			formNewArt = $("#formNewArt");
 			
 			
@@ -101,6 +137,10 @@ $(document).ready(
 				console.log("anchor articles");
 				getArticles();
 			}
+			
+			formLogin.children("#postLogin").click(login);
+		
+			formSub.children("#postSubscribe").click(subscribe);
 			
 			/*var subscribe = function() {
 					$.ajax({

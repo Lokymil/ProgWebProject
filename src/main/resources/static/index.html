@@ -54,31 +54,23 @@
 			<div id="fragmentInscription" style="display: none">
 				<fieldset>
 					<legend>Inscription</legend>
-					<form id="formSub" method="post" action="inscription"
-						onsubmit="return verifForm(this)">
-						<label><span class="requis">*</span> Nom</label><input type="text"
-							name="nom" onblur="verifNom(this)" /><br /> <label><span
-							class="requis">*</span> Prenom</label><input type="text" name="prenom"
-							onblur="verifPrenom(this)" /><br /> <label><span
-							class="requis">*</span> Pseudo</label><input type="text" name="pseudo"
-							onblur="verifPseudo(this)" /><br />
-
-						<!--  <label><span class="requis">*</span> Sexe :</label>
-					    <input type="radio" name="sexe" value="femme" class="femme"/> <label for="femme" class="sexeF">Femme</label><br/>
-					    <input type="radio" name="sexe" value="homme" class="homme"/> <label for="homme" class="sexeM">Homme</label><br/>
-						
-						<label><span class="requis">*</span> Date de naissance</label><input type="date" name="date" value="" placeholder="JJ/MM/AAAA"/><br/>-->
-						<label><span class="requis">*</span> E-mail</label><input
-							type="text" name="email" size="30" onblur="verifMail(this)" /><br />
-						<label><span class="requis">*</span> Mot de passe</label><input
-							type="password" name="motdepasse" value="" size="20"
-							maxlength="20" placeholder="8 caracteres min."
-							onblur="verifMdp(this)" /><br /> <label><span
-							class="requis">*</span> Confirmation</label><input type="password"
-							name="confirmation" value="" size="20" maxlength="20" /><br />
-					</form>
-					<input id="postSubscribe" type="submit" value="Valider"
-						class="sansLabel" />
+					<div id="formSubscribe">
+						<label><span class="requis">*</span> Nom : </label>
+						<input id="lastName" type="text"name="nom"/><br />
+						<label><span class="requis">*</span> Prenom : </label>
+						<input id="firstName" type="text" name="prenom"/><br />
+						<label><span class="requis">*</span> Pseudo : </label>
+						<input id="userName" type="text" name="pseudo"/><br />
+	
+						<label><span class="requis">*</span> E-mail : </label>
+						<input id="email" type="text" name="email" size="30"/><br />
+						<label><span class="requis">*</span> Mot de passe : </label>
+						<input id="password" type="password" name="motdepasse" value="" size="20"
+							maxlength="20"/><br />
+						<label><span class="requis">*</span> Confirmation : </label>
+						<input id="password2" type="password" name="confirmation" value="" size="20" maxlength="20" /><br />
+						<input id="postSubscribe" type="submit" value="Valider" class="sansLabel" />
+					</div>
 				</fieldset>
 
 			</div>
@@ -86,12 +78,12 @@
 
 				<fieldset>
 					<legend>Connexion</legend>
-					<form id="formLogin" method="post" action="/subscribe">
-						<label>Pseudo</label><input id="userName" type="text"name="pseudo" /><br />
-						<label>Mot de passe</label><input id="password" type="password"
-							name="motdepasse" value="" size="20" maxlength="20" /><br /> <input
-							id="postLogin" type="submit" value="Valider" class="sansLabel" />
-					</form>
+					<div id="formLogin">
+						<label>Pseudo : </label><input id="userName" type="text"name="pseudo" /><br />
+						<label>Mot de passe : </label>
+						<input id="password" type="password" name="motdepasse" value="" size="20" maxlength="20" /><br />
+						<input id="postLogin" type="submit" value="Valider" class="sansLabel" />
+					</div>
 				</fieldset>
 
 			</div>
