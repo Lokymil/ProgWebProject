@@ -55,8 +55,7 @@ public class ArticleService {
 			List<Article> result = articleDao.getArticlesByPage(pageNumber);
 			return result;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Can't retrieve articles");
 			return null;
 		}
 	}

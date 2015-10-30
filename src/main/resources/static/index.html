@@ -24,9 +24,9 @@
 		</header>
 
 		<div id="content">
-			<div id="listArticles" style="display: inline">
-				<input type="button" id="addArticle" value="Ajouter un article"
+			<input type="button" id="addArticle" value="Ajouter un article"
 					onClick="addArticle()">
+			<div id="listArticles" style="display: inline">
 			</div>
 			<div id="fragmentArticle" style="display: none">
 
@@ -80,6 +80,12 @@
 			</div>
 		</div>
 
+	<fieldset id="articleTemplate" style="display:none">
+		<legend id="title"></legend>
+		<p id="author"></p>
+		<p id="content"></p>
+	</fieldset>
+
 		<footer id="footer">
 			<p>
 				Site web realise par <a
@@ -93,13 +99,6 @@
 				de <a href="https://github.com/Lokymil/ProgWebProject">GitHub</a>.
 		</footer>
 	</div>
-
-	<fieldset id="articleTemplate" style="display:none">
-		<legend id="title"></legend>
-		<p id="author"></p>
-		<br/><br/>
-		<p id="content"></p>
-	</fieldset>
 
 	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>

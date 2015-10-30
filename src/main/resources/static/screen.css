@@ -65,14 +65,14 @@ footer{
 	margin-top: 80px;
 	padding: 12px;
 }
-p{
+#footer p{
 	font-size: 12px;
 	text-align: center;
 }
-a{
+ #footer a{
 	text-decoration: underline white;
 	color:white;
 }
-a:hover{
+#footer a:hover{
 	color:blue;
 }

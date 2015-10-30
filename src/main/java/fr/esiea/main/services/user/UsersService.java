@@ -45,7 +45,7 @@ public class UsersService {
 			return "User name " + userName + " already exists";
 		}
 		catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Can't create user");
 			return "Can't create user due to an internal error";
 		}
 	}
@@ -62,7 +62,7 @@ public class UsersService {
 			return authorisation;
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("User does not exist");
 			return null;
 		}
 	}
