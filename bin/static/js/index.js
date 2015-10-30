@@ -1,13 +1,16 @@
+var userDisplay = {};
+var buttonSub = {};
+var buttonLogin = {};
+var buttonLogout = {};
 var subFragment = {};
 var logFragment = {};
 var articleFragment = {};
 var articles = {};
-var test = "test";
 var formLogin = {};
 var formSub = {};
 var formNewArt = {};
-var login = {};
-var authoriation = {};
+var login = "";
+var authorisation = "";
 
 function inscription(){
 	state=subFragment.style.display;
@@ -44,6 +47,8 @@ var subscribe = function(){
 						console.log("Is ok " + data);
 						login = formSub.children("#userName").val();
 						authorisation = data;
+						logedIn();
+						getArticles();
 					}
 				} else {
 					alert("Nous ne pouvons vous enregistrer à cause d'un problème interne.");
@@ -75,6 +80,8 @@ var login = function(){
 							if (data != null && data != ""){ 
 								login = formLogin.children("#userName").val();
 								authorisation = data;
+								logedIn();
+								getArticles();
 							} else {
 								alert("Votre mot de passe ou votre identifiant sont erronés");
 							}
@@ -83,13 +90,51 @@ var login = function(){
 };
 
 function addArticle(){
-	state=articleFragment.style.display;
-	if(state=="none"){
-		window.location.hash="newArticle";
-		subFragment.style.display="none";
-		logFragment.style.display="none";
-		articleFragment.style.display="inline";
-		articles.style.display="none";
+	console.log("ajout d'article");
+	if (login == "" || authorisation == ""){
+		connexion();
+		alert("Vous devez être enregistré pour faire cette action");
+	} else {
+		state=articleFragment.style.display;
+		if(state=="none"){
+			window.location.hash="newArticle";
+			subFragment.style.display="none";
+			logFragment.style.display="none";
+			articleFragment.style.display="inline";
+			articles.style.display="none";
+		}
+	}
+}
+
+var postNewArticle = function() {
+	console.log("posting new article");
+	
+	var title = formNewArt.children("#title").val();
+	var content = formNewArt.children("#content").val();
+	
+	if (title == null || content == null || title == "" || content == ""){
+		alert("Le titre et le contenu doivent être non vide.");
+	} else {
+		console.log("titre et content valide");
+		console.log(title);
+		console.log(content);
+		$.post("/new_article",{
+			userName:login,
+			authorisation:authorisation,
+			title:title,
+			content:content
+		}, function(data){
+			if (data.indexOf("Unauthorized")>-1){
+				connexion();
+				deconnexion();
+				alert("Vous devez être enregistré pour poster un article");
+			} else if (data.indexOf("error")>-1) {
+				alert("Nous ne pouvons accèder à votre requête à cause d'un problème interne");
+			} else {
+				getArticles();
+				alert("Votre article a bien été posté!");
+			}
+		});
 	}
 }
 
@@ -104,11 +149,32 @@ function getArticles(){
 	}
 }
 
+var logedIn = function() {
+	//userDisplay.text(login);
+	userDisplay.style.display="inline";
+	buttonSub.style.display="none";
+	buttonLogin.style.display="none";
+	buttonLogout.style.display="inline";
+}
+
+function deconnexion(){
+	userDisplay.style.display="none";
+	buttonSub.style.display="inline";
+	buttonLogin.style.display="inline";
+	buttonLogout.style.display="none";
+	login="";
+	authorisation="";
+}
+
 $(document).ready(
 
 		function(){
 			console.log("ready");
 			
+			userDisplay = document.getElementById("userDisplay");
+			buttonSub = document.getElementById("buttonInscription");
+			buttonLogin = document.getElementById("buttonConnexion");
+			buttonLogout = document.getElementById("buttonDeconnexion");
 			subFragment = document.getElementById("fragmentInscription");
 			logFragment = document.getElementById("fragmentConnexion");
 			articleFragment = document.getElementById("fragmentArticle");
@@ -141,6 +207,8 @@ $(document).ready(
 			formLogin.children("#postLogin").click(login);
 		
 			formSub.children("#postSubscribe").click(subscribe);
+			
+			formNewArt.children("#postArticle").click(postNewArticle);
 			
 			/*var subscribe = function() {
 					$.ajax({

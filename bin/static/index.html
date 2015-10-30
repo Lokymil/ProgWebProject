@@ -11,11 +11,15 @@
 				ATTRAC-PARCK<br />Site des parcs d'attractions
 			</h1>
 			<div id="spaceButton">
-				<input type="button" id="buttonInscription" value="Inscription"
-					onClick="inscription()"> <input type="button"
-					id="buttonConnexion" value="Connexion" onClick="connexion()">
+				<p id="userDisplay" style="display:none"></p>
 				<input type="button" id="buttonArticles" value="Articles"
 					onClick="getArticles()">
+				<input type="button" id="buttonInscription" value="Inscription"
+					onClick="inscription()" style="display:inline">
+				<input type="button" id="buttonConnexion"
+					value="Connexion" onClick="connexion()" style="display:inline">
+				<input type="button" id="buttonDeconnexion"
+					value="Deconnexion" onClick="deconnexion()" style="display:none">
 			</div>
 		</header>
 
@@ -38,16 +42,14 @@
 			<div id="fragmentArticle" style="display: none">
 
 				<fieldset>
-					<legend>Articles</legend>
-					<form id="formNewArt" method="post" action="articles">
-						<label>Pseudo</label><input id="login" type="text" name="pseudo" /><br /> 
-						<label>Titre</label><input id="title" type="text" name="email" size="30" /><br/>
-						<label>Contenu :</label></br>
-						<textarea name="article" rows="10" cols="50"></textarea>
-						<br />
-					</form>
-					<input id="postArticle" type="submit" value="Valider"
-						class="sansLabel" />
+					<div id="formNewArt">
+						<legend>Articles</legend>
+							<label>Titre : </label><input id="title" type="text" name="email" size="30" /><br/>
+							<label>Contenu :</label></br>
+							<textarea id="content" name="article" rows="10" cols="50"></textarea>
+							<br />
+						<input id="postArticle" type="submit" value="Valider" class="sansLabel" />
+					</div>
 				</fieldset>
 
 			</div>
