@@ -1,0 +1,101 @@
+/* ------------------------ Header ----------------------- */
+h1{
+	text-align: center;
+	
+}
+header {
+	color:black;
+	background-color:white;
+	background-image:url(baniere.jpg);
+}
+#spaceButton{
+	float: right;
+	margin-right: 10px;
+	margin-top: -70px;
+}
+#buttonConnexion{
+	background-color:silver;
+	font-family:'Helvetica Neue',sans-serif;
+	font-size:18px;
+	line-height:30px;
+	border-radius:20px;
+	-webkit-border-radius:20px;
+	-moz-border-radius:20px;
+	border: 1px #87CEFA solid;
+	text-shadow:#87CEFA 0 -1px 0;
+	width:120px;
+	height:32px
+}
+#buttonInscription{
+	background-color:silver;
+	font-family:'Helvetica Neue',sans-serif;
+	font-size:18px;
+	line-height:30px;
+	border-radius:20px;
+	-webkit-border-radius:20px;
+	-moz-border-radius:20px;
+	border: 1px #87CEFA solid;
+	text-shadow:#87CEFA 0 -1px 0;
+	width:120px;
+	height:32px
+}
+/* ------------------------ Content ----------------------- */
+#content{
+	margin-top: 40px;
+    margin-left: 165px;
+    margin-right: 165px;
+}
+#formInscription{
+	position: absolute;
+	top:156px;
+}
+form input.homme {
+    margin-left: 71px;
+}
+#formConnexion{
+	position: absolute;
+	top:156px;
+}
+#formArticle{
+	margin-bottom: 15px;
+	position: absolute;
+	top: 156px;
+}
+/* ------------------------ Formulaire General ----------------------- */
+fieldset {
+    padding: 10px;
+    border: 1px #0568CD solid;
+}
+legend {
+    font-weight: bold;
+    color: #0568CD;
+}
+form input {
+    margin: 3px 3px 0px 0px;
+    margin-left: 15px;
+    border: 1px #999 solid;
+}
+form input.sansLabel {
+    margin-left: 200px;
+}
+form .requis {
+    color: #c00;
+}
+/* ------------------------ Footer ----------------------- */
+footer{
+	background: black;
+	color: white;
+	margin-top: 80px;
+	padding: 12px;
+}
+p{
+	font-size: 12px;
+	text-align: center;
+}
+a{
+	text-decoration: none;
+	color:white;
+}
+a:hover{
+	color:blue;
+}
