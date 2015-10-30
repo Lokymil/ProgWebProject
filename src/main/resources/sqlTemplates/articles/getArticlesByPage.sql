@@ -1,1 +1,1 @@
-SELECT * FROM articles order by lastModified
+SELECT * FROM articles order by lastModified desc
