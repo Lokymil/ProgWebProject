@@ -9,6 +9,7 @@ var articles = {};
 var formLogin = {};
 var formSub = {};
 var formNewArt = {};
+var articleTemplate = {};
 var login = "";
 var authorisation = "";
 
@@ -139,14 +140,20 @@ var postNewArticle = function() {
 }
 
 function getArticles(){
-	state=articles.style.display;
-	if(state=="none"){
-		window.location.hash="articles";
-		subFragment.style.display="none";
-		logFragment.style.display="none";
-		articleFragment.style.display="none";
-		articles.style.display="inline";
-	}
+	loadArticles()
+	
+	window.location.hash="articles";
+	subFragment.style.display="none";
+	logFragment.style.display="none";
+	articleFragment.style.display="none";
+	articles.style.display="inline";
+}
+
+var loadArticles = function() {
+	console.log("loading articles");
+	$.get("/articles/1",function(data){
+		console.log(data);
+	});
 }
 
 var logedIn = function() {
@@ -178,7 +185,8 @@ $(document).ready(
 			subFragment = document.getElementById("fragmentInscription");
 			logFragment = document.getElementById("fragmentConnexion");
 			articleFragment = document.getElementById("fragmentArticle");
-			articles = document.getElementById("listArticles");
+			articles = $("#listArticles");
+			articleTemplate = $("#articleTemplate");
 			formLogin = $("#formLogin");
 			formSub = $("#formSubscribe");
 			formNewArt = $("#formNewArt");

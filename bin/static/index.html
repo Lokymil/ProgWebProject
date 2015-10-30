@@ -27,17 +27,6 @@
 			<div id="listArticles" style="display: inline">
 				<input type="button" id="addArticle" value="Ajouter un article"
 					onClick="addArticle()">
-				<fieldset>
-					<legend>Article 1</legend>
-
-					<label>De : </label>Lolipop<br /><br />
-					<label>Titre : </label>Petite description d'Asterix<br />
-					<br /> Au coeur de la region parisienne, le Parc Asterix vous
-					propose 36 attractions dont une dizaine dediees aux moins de 6 ans,
-					qui invitent nos irreductibles visiteurs a vivre des aventures
-					taillees sur mesure<br />
-					<br />
-				</fieldset>
 			</div>
 			<div id="fragmentArticle" style="display: none">
 
@@ -45,7 +34,7 @@
 					<div id="formNewArt">
 						<legend>Articles</legend>
 							<label>Titre : </label><input id="title" type="text" name="email" size="30" /><br/>
-							<label>Contenu :</label></br>
+							<label>Contenu :</label><br/>
 							<textarea id="content" name="article" rows="10" cols="50"></textarea>
 							<br />
 						<input id="postArticle" type="submit" value="Valider" class="sansLabel" />
@@ -104,6 +93,13 @@
 				de <a href="https://github.com/Lokymil/ProgWebProject">GitHub</a>.
 		</footer>
 	</div>
+
+	<fieldset id="articleTemplate" style="display:none">
+		<legend id="title"></legend>
+		<p id="author"></p>
+		<br/><br/>
+		<p id="content"></p>
+	</fieldset>
 
 	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>

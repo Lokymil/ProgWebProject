@@ -5,6 +5,7 @@ import java.util.Date;
 public class Article {
 
 	private long authorId;
+	private String authorName;
 	private long id;
 	private String title;
 	private String content;
@@ -13,10 +14,11 @@ public class Article {
 	
 	public Article() {}
 	
-	public Article(long idCreator, long id, String title, String content,
+	public Article(long idCreator,String authorName, long id, String title, String content,
 			Date dateCreation, Date lastModified) {
 		super();
 		this.authorId = idCreator;
+		this.authorName = authorName;
 		this.id = id;
 		this.title = title;
 		this.content = content;
@@ -77,6 +79,14 @@ public class Article {
 		return "Article [idCreator=" + authorId + ", id=" + id + ", title="
 				+ title + ", content=" + content + ", dateCreation="
 				+ creationDate + ", lastModified=" + lastModified + "]";
+	}
+
+	public String getAuthorName() {
+		return authorName;
+	}
+
+	public void setAuthorName(String authorName) {
+		this.authorName = authorName;
 	}
 
 }

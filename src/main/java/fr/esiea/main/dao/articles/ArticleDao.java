@@ -37,6 +37,7 @@ public class ArticleDao {
 			
 			Map<String, Object> param = new HashMap<String,Object>();
 			param.put("authorId", article.getAuthorId());
+			param.put("authorName", article.getAuthorName());
 			param.put("title", article.getTitle());
 			param.put("content", article.getContent());
 			param.put("creationDate", article.getDateCreation());
@@ -74,7 +75,12 @@ public class ArticleDao {
 				throw noArticleException;
 			}
 			
-			List<Article> toReturn = result.subList(infBound, supBound); 
+			List<Article> toReturn = null;
+			if (result.size() > supBound){
+				toReturn = result.subList(infBound, supBound); 
+			} else if (result.size() > infBound) {
+				toReturn = result.subList(infBound, result.size());
+			}
 			
 			return toReturn;
 		} catch (IOException e) {

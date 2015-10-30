@@ -34,7 +34,7 @@ public class ArticleService {
 			logger.info("Creating article " + title + " by " + userName);
 			if (credService.isAthorized(userName, authorisation)){
 				User user = userService.getUser(userName);
-				Article article = new Article(0,0,title,content,new Date(), new Date());
+				Article article = new Article(0,userName,0,title,content,new Date(), new Date());
 				articleDao.insertArticle(article);
 				result = "Article has been created";
 				logger.info("Article " + title + " has been created");
