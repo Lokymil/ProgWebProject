@@ -3,6 +3,8 @@ package fr.esiea.main.controller.users;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,8 @@ import fr.esiea.main.services.user.UsersService;
 @Controller
 public class UsersController {
 
+	Logger logger = LoggerFactory.getLogger(getClass());
+	
 	@Autowired
 	private UsersService usersService;
 
@@ -48,7 +52,7 @@ public class UsersController {
 	public @ResponseBody String login(HttpServletRequest req,
 			@RequestParam(value = "userName", required = true) String userName,
 			@RequestParam(value = "password", required = true) String password){
-		
+		logger.debug("/login has been called with " + userName);
 		String authorisation = usersService.login(userName, password);
 		
 		return authorisation;

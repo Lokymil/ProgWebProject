@@ -1,49 +1,70 @@
-var subForm = {};
-var logForm = {};
-var articleForm = {};
+var subFragment = {};
+var logFragment = {};
+var articleFragment = {};
 var articles = {};
+var test = "test";
+var formLogin = {};
+var formSub = {};
+var formNewArt = {};
 
 function inscription(){
-	state=subForm.style.visibility;
-	if(state=="hidden"){
+	state=subFragment.style.display;
+	if(state=="none"){
 		window.location.hash="subscribe";
-		subForm.style.visibility="visible";
-		logForm.style.visibility="hidden";
-		articleForm.style.visibility="hidden";
-		articles.style.visibility="hidden";
+		subFragment.style.display="inline";
+		logFragment.style.display="none";
+		articleFragment.style.display="none";
+		articles.style.display="none";
 	}
 }
 
+var subscribe = function(){
+	console.log("Send login");
+	$.post("/login",{userName:test,password:test}, function(data, status){
+		console.log("data : " + data + ", status " + status);
+	});
+//		$.ajax({
+//			url: "http://localhost:8090/login",
+//			type: "POST",
+//			data: {userName:test,password:test},
+//			dataType: "json",
+//			success: function(data){
+//				console.log("test " + data);
+//			}
+//		});
+		console.log("loged in")
+	};
+
 function connexion(){
-	state=logForm.style.visibility;
-	if(state=="hidden"){
+	state=logFragment.style.display;
+	if(state=="none"){
 		window.location.hash="login";
-		subForm.style.visibility="hidden";
-		logForm.style.visibility="visible";
-		articleForm.style.visibility="hidden";
-		articles.style.visibility="hidden";
+		subFragment.style.display="none";
+		logFragment.style.display="inline";
+		articleFragment.style.display="none";
+		articles.style.display="none";
 	}
 }
 
 function addArticle(){
-	state=articleForm.style.visibility;
-	if(state=="hidden"){
+	state=articleFragment.style.display;
+	if(state=="none"){
 		window.location.hash="newArticle";
-		subForm.style.visibility="hidden";
-		logForm.style.visibility="hidden";
-		articleForm.style.visibility="visible";
-		articles.style.visibility="hidden";
+		subFragment.style.display="none";
+		logFragment.style.display="none";
+		articleFragment.style.display="inline";
+		articles.style.display="none";
 	}
 }
 
 function getArticles(){
-	state=articleForm.style.visibility;
-	if(state=="hidden"){
+	state=articles.style.display;
+	if(state=="none"){
 		window.location.hash="articles";
-		subForm.style.visibility="hidden";
-		logForm.style.visibility="hidden";
-		articleForm.style.visibility="hidden";
-		articles.style.visibility="visible";
+		subFragment.style.display="none";
+		logFragment.style.display="none";
+		articleFragment.style.display="none";
+		articles.style.display="inline";
 	}
 }
 
@@ -52,16 +73,36 @@ $(document).ready(
 		function(){
 			console.log("ready");
 			
-			subForm = document.getElementById("formInscription");
-			logForm = document.getElementById("formConnexion");
-			articleForm = document.getElementById("formArticle");
+			subFragment = document.getElementById("fragmentInscription");
+			logFragment = document.getElementById("fragmentConnexion");
+			articleFragment = document.getElementById("fragmentArticle");
 			articles = document.getElementById("listArticles");
+			formLogin = $("#formLogin");
+			formSub = $("#formSub");
+			formNewArt = $("#formNewArt");
 			
-			var myData = {name:"testName"};
-			var menu = $("#menu");
-			var content = $("#content");
 			
-			var subscribe = function() {
+			if (window.location.hash == "#subscribe") {
+				console.log("anchor subscribe");
+				inscription();
+			}
+			
+			if (window.location.hash == "#login") {
+				console.log("anchor login");
+				connexion();
+			}
+			
+			if (window.location.hash == "#newArticle") {
+				console.log("anchor newArticle");
+				addArticle();
+			}
+			
+			if (window.location.hash == "#articles") {
+				console.log("anchor articles");
+				getArticles();
+			}
+			
+			/*var subscribe = function() {
 					$.ajax({
 						url: "http://localhost:8090/subscribe",
 						method: "GET",
@@ -75,7 +116,7 @@ $(document).ready(
 			
 			if(window.location.anchor == "subscribe") {
 				subscribe();
-			}
+			}*/
 			
 			/*$.ajax({
 				url: "http://localhost:8090/new_article",

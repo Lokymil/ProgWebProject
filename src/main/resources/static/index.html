@@ -1,90 +1,118 @@
 <!DOCTYPE html>
 <head>
-	<meta charset="UTF-8"></meta>
-	<title>Blog-Accueil</title>
-	<link rel="stylesheet" href="screen.css">
+<meta charset="UTF-8"></meta>
+<title>Blog-Accueil</title>
+<link rel="stylesheet" href="screen.css">
 <head>
-
 <body>
 	<div id="wrapper">
-		<header  class="header">
-			<h1>ATTRAC-PARCK<br/>Site des parcs d'attractions</h1>
+		<header class="header">
+			<h1>
+				ATTRAC-PARCK<br />Site des parcs d'attractions
+			</h1>
 			<div id="spaceButton">
-				<input type="button" id="buttonInscription" value="Inscription" onClick="inscription()">	
-				<input type="button" id="buttonConnexion" value="Connexion" onClick="connexion()">
-				<input type="button" id="buttonArticles" value="Articles" onClick="getArticles()">
-			</div>	
+				<input type="button" id="buttonInscription" value="Inscription"
+					onClick="inscription()"> <input type="button"
+					id="buttonConnexion" value="Connexion" onClick="connexion()">
+				<input type="button" id="buttonArticles" value="Articles"
+					onClick="getArticles()">
+			</div>
 		</header>
-			
+
 		<div id="content">
-			<div id="listArticles" style="visibility: visible">
-				<input type="button" id="addArticle" value="Ajouter un article" onClick="addArticle()">
+			<div id="listArticles" style="display: inline">
+				<input type="button" id="addArticle" value="Ajouter un article"
+					onClick="addArticle()">
 				<fieldset>
-				  	<legend>Article 1</legend>
-				  
-				  	<label>De : </label>Lolipop<br/><br/>
-				    <label>Titre : </label>Petite description d'Asterix<br/><br/>
-				    Au coeur de la region parisienne, le Parc Asterix vous propose 36 attractions dont une dizaine dediees aux moins de 6 ans, qui invitent nos irreductibles visiteurs a vivre des aventures taillees sur mesure<br/><br/>
-		    	</fieldset>
+					<legend>Article 1</legend>
+
+					<label>De : </label>Lolipop<br /><br />
+					<label>Titre : </label>Petite description d'Asterix<br />
+					<br /> Au coeur de la region parisienne, le Parc Asterix vous
+					propose 36 attractions dont une dizaine dediees aux moins de 6 ans,
+					qui invitent nos irreductibles visiteurs a vivre des aventures
+					taillees sur mesure<br />
+					<br />
+				</fieldset>
 			</div>
-			<div id="formArticle" style="visibility: hidden">
-				<form method="post" action="articles">
-					<fieldset>
-					  	<legend>Articles</legend>
-					  
-					  	<label>Pseudo</label><input type="text" name="pseudo"/><br/>
-					    <label>Titre</label><input type="text" name="email" size="30"/><br/>
-					    <label>Commentaires :</label></br><textarea name="article" rows="10" cols="50"></textarea><br/>
-					    
-				    	<input type="submit" value="Valider" class="sansLabel"/>
-			    	</fieldset>
-				</form>
+			<div id="fragmentArticle" style="display: none">
+
+				<fieldset>
+					<legend>Articles</legend>
+					<form id="formNewArt" method="post" action="articles">
+						<label>Pseudo</label><input id="login" type="text" name="pseudo" /><br /> 
+						<label>Titre</label><input id="title" type="text" name="email" size="30" /><br/>
+						<label>Contenu :</label></br>
+						<textarea name="article" rows="10" cols="50"></textarea>
+						<br />
+					</form>
+					<input id="postArticle" type="submit" value="Valider"
+						class="sansLabel" />
+				</fieldset>
+
 			</div>
-			<div id="formInscription" style="visibility: hidden">
-				<form method="post" action="inscription" onsubmit="return verifForm(this)">
-					<fieldset>
-					  	<legend>Inscription</legend>
-					  	
-					  	<label><span class="requis">*</span> Nom</label><input type="text" name="nom" onblur="verifNom(this)"/><br/>
-					    <label><span class="requis">*</span> Prenom</label><input type="text" name="prenom" onblur="verifPrenom(this)"/><br/>
-					    <label><span class="requis">*</span> Pseudo</label><input type="text" name="pseudo" onblur="verifPseudo(this)"/><br/>
-					    
-					    <label><span class="requis">*</span> Sexe :</label>
+			<div id="fragmentInscription" style="display: none">
+				<fieldset>
+					<legend>Inscription</legend>
+					<form id="formSub" method="post" action="inscription"
+						onsubmit="return verifForm(this)">
+						<label><span class="requis">*</span> Nom</label><input type="text"
+							name="nom" onblur="verifNom(this)" /><br /> <label><span
+							class="requis">*</span> Prenom</label><input type="text" name="prenom"
+							onblur="verifPrenom(this)" /><br /> <label><span
+							class="requis">*</span> Pseudo</label><input type="text" name="pseudo"
+							onblur="verifPseudo(this)" /><br />
+
+						<!--  <label><span class="requis">*</span> Sexe :</label>
 					    <input type="radio" name="sexe" value="femme" class="femme"/> <label for="femme" class="sexeF">Femme</label><br/>
 					    <input type="radio" name="sexe" value="homme" class="homme"/> <label for="homme" class="sexeM">Homme</label><br/>
-					
-					    <label><span class="requis">*</span> Date de naissance</label><input type="date" name="date" value="" placeholder="JJ/MM/AAAA"/><br/>
-					    <label><span class="requis">*</span> E-mail</label><input type="text" name="email" size="30" onblur="verifMail(this)"/><br/>
-					    <label><span class="requis">*</span> Mot de passe</label><input type="password" name="motdepasse" value="" size="20" maxlength="20" placeholder="8 caracteres min." onblur="verifMdp(this)"/><br/>
-					    <label><span class="requis">*</span> Confirmation</label><input type="password" name="confirmation" value="" size="20" maxlength="20"/><br/>
-				    
-				    	<input type="submit" value="Valider" class="sansLabel"/>
-			    	</fieldset>
-				</form>
+						
+						<label><span class="requis">*</span> Date de naissance</label><input type="date" name="date" value="" placeholder="JJ/MM/AAAA"/><br/>-->
+						<label><span class="requis">*</span> E-mail</label><input
+							type="text" name="email" size="30" onblur="verifMail(this)" /><br />
+						<label><span class="requis">*</span> Mot de passe</label><input
+							type="password" name="motdepasse" value="" size="20"
+							maxlength="20" placeholder="8 caracteres min."
+							onblur="verifMdp(this)" /><br /> <label><span
+							class="requis">*</span> Confirmation</label><input type="password"
+							name="confirmation" value="" size="20" maxlength="20" /><br />
+					</form>
+					<input id="postSubscribe" type="submit" value="Valider"
+						class="sansLabel" />
+				</fieldset>
+
 			</div>
-			<div id="formConnexion" style="visibility: hidden">
-				<form method="post" action="connexion">
-					<fieldset>
-					  	<legend>Connexion</legend>
-					  	
-					  	<label>Pseudo</label><input type="text" name="pseudo"/><br/>
-					    <label>E-mail</label><input type="text" name="email" size="30"/><br/>
-					    <label>Mot de passe</label><input type="password" name="motdepasse" value="" size="20" maxlength="20"/><br/>
-					    
-				    	<input type="submit" value="Valider" class="sansLabel"/>
-			    	</fieldset>
-				</form>
+			<div id="fragmentConnexion" style="display: none">
+
+				<fieldset>
+					<legend>Connexion</legend>
+					<form id="formLogin" method="post" action="/subscribe">
+						<label>Pseudo</label><input id="userName" type="text"name="pseudo" /><br />
+						<label>Mot de passe</label><input id="password" type="password"
+							name="motdepasse" value="" size="20" maxlength="20" /><br /> <input
+							id="postLogin" type="submit" value="Valider" class="sansLabel" />
+					</form>
+				</fieldset>
+
 			</div>
 		</div>
-		
+
 		<footer id="footer">
-			<p>Site web realise par <a href="https://fr.linkedin.com/pub/christophe-arrestier/b1/411/316">Christophe ARRESTIER</a> et <a href="https://fr.linkedin.com/in/floriannederouet">Florianne DEROUET</a><br/>Dans le cadre d'un projet scolaire a l'<a href="http://www.esiea.fr/">ESIEA</a></p>
-			<p>Ce site est open source et la participation s'effectue par le biais de <a href="https://github.com/Lokymil/ProgWebProject">GitHub</a>.
+			<p>
+				Site web realise par <a
+					href="https://fr.linkedin.com/pub/christophe-arrestier/b1/411/316">Christophe
+					ARRESTIER</a> et <a href="https://fr.linkedin.com/in/floriannederouet">Florianne
+					DEROUET</a><br />Dans le cadre d'un projet scolaire a l'<a
+					href="http://www.esiea.fr/">ESIEA</a>
+			</p>
+			<p>
+				Ce site est open source et la participation s'effectue par le biais
+				de <a href="https://github.com/Lokymil/ProgWebProject">GitHub</a>.
 		</footer>
 	</div>
-	
+
 	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
-	<script type="text/javascript" src="js/subscribeView.js"></script>
+	<!--<script type="text/javascript" src="js/subscribeView.js"></script>-->
 </body>
 </html>

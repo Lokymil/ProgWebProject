@@ -52,12 +52,13 @@ public class UsersService {
 
 	public String login(String userName, String password) {
 		try {
+			logger.info("Login for " + userName);
 			User user = userDao.getUserByUserName(userName);
 			if (user == null){
 				throw new Exception("User does not exist");
 			}
 			String authorisation = credService.getCredByUser(userName, password);
-			
+			logger.info("User " + userName + " loged in with " + authorisation);
 			return authorisation;
 			
 		} catch (Exception e) {
