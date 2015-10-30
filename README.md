@@ -4,7 +4,7 @@ Projet web de 5ieme année ESIEA ecolé d'ingénieur informatique
 Le but de ce projet est de créer un blog capable de gérer :
   - plusieurs utilisateurs
   - multiplicité d'articles
-  - multiplicité de commentaire par article
+
 Cette application doit être un site web dit "one page".
 
 ________________ Récupération du projet et lancement de l'application________________
