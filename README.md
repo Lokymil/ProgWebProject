@@ -7,7 +7,7 @@ Le but de ce projet est de créer un blog capable de gérer :
   - multiplicité de commentaire par article
 Cette application doit être un site web dit "one page".
 
-________________ Récupération du projet ________________
+________________ Récupération du projet et lancement de l'application________________
 
 Pour pouvoir exploiter le projet, il faut d'abord cloner le repository.
 Pour cloner le repository :
@@ -20,8 +20,6 @@ Une fois le répository cloner, avec un interpréteur de commande :
   - se placer dans le dossier du projet
   - utiliser la commande "gradlew eclipse", l'exécution peut prendre quelques minutes
 De cette façon les fichiers ".classpath" et ".project" seront créés, les dépendances bibliothèques externes seront téléchargées et le projet pour être exploitable.
-
-________________ Lancement de l'application à partir d'eclipse ________________
 
 Pour lancer l'application sans utiliser un .jar il faut avoir effectué le "gradlew eclipse" expliqué précédemment.
 Ensuite il faut ouvrir le projet avec eclipse et :
