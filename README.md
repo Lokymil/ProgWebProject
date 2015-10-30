@@ -25,7 +25,7 @@ ________________ Lancement de l'application à partir d'eclipse ________________
 
 Pour lancer l'application sans utiliser un .jar il faut avoir effectué le "gradlew eclipse" expliqué précédemment.
 Ensuite il faut ouvrir le projet avec eclipse et :
-  - clic droit sur le fichier "ProgWebProjectApplication.class"
+  - clic droit sur le fichier "src/main/java/ProgWebProjectApplication.class"
   - sélectionner "Run as > Java application"
 Le projet est désormais lancé. Pour avoir accès à l'interface web il faut utiliser l'url :
   http://localhost:8090/index.html
